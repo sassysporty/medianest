@@ -4,12 +4,22 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks, serviceSubLinks } from "@/config/site";
+import { CaretDown, List, X } from "@phosphor-icons/react";
+
+const spring = { type: "spring" as const, stiffness: 200, damping: 25 };
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -22,15 +32,27 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-[#16123f] sticky top-0 z-50 border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-2xl font-bold text-white">
-            Media<span className="text-[#ff5e6c]">Nest</span>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+        scrolled
+          ? "mt-0 mx-0"
+          : "mt-4 mx-4 md:mx-8"
+      }`}
+    >
+      <div
+        className={`max-w-7xl mx-auto transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+          scrolled
+            ? "bg-[#08081a]/95 backdrop-blur-2xl border-b border-white/[0.06] rounded-none px-4 sm:px-6 lg:px-8"
+            : "bg-[#08081a]/80 backdrop-blur-2xl ring-1 ring-white/[0.08] rounded-2xl px-4 sm:px-6 lg:px-8"
+        }`}
+      >
+        <div className="flex justify-between items-center h-14">
+          <Link href="/" className="text-xl font-bold text-white tracking-tight">
+            Media<span className="text-[#e8505b]">Nest</span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) =>
               link.label === "Services" ? (
                 <div
@@ -42,32 +64,28 @@ export default function Header() {
                 >
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-white font-medium transition-colors text-sm flex items-center gap-1"
+                    className="text-gray-400 hover:text-white font-medium transition-colors text-sm px-3 py-2 rounded-lg hover:bg-white/[0.05] flex items-center gap-1"
                   >
                     {link.label}
-                    <svg
-                      className={`w-3.5 h-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
+                    <CaretDown
+                      weight="bold"
+                      className={`w-3 h-3 transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`}
+                    />
                   </Link>
 
                   <AnimatePresence>
                     {servicesOpen && (
                       <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.2 }}
+                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                         className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
                       >
-                        <div className="bg-white rounded-xl shadow-xl border border-gray-200 py-2 w-56">
+                        <div className="bg-[#0f0f1a] ring-1 ring-white/[0.08] rounded-2xl py-2 w-52 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
                           <Link
                             href="/services"
-                            className="block px-4 py-2.5 text-sm text-gray-900 font-semibold hover:bg-gray-50 border-b border-gray-100"
+                            className="block px-4 py-2.5 text-sm text-white font-semibold hover:bg-white/[0.05] border-b border-white/[0.06] mx-2 rounded-lg"
                           >
                             All Services
                           </Link>
@@ -75,7 +93,7 @@ export default function Header() {
                             <Link
                               key={sub.href}
                               href={sub.href}
-                              className="block px-4 py-2.5 text-sm text-gray-600 hover:text-[#ff5e6c] hover:bg-gray-50 transition-colors"
+                              className="block px-4 py-2.5 text-sm text-gray-400 hover:text-white hover:bg-white/[0.05] mx-2 rounded-lg transition-colors"
                             >
                               {sub.label}
                             </Link>
@@ -89,7 +107,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-300 hover:text-white font-medium transition-colors text-sm"
+                  className="text-gray-400 hover:text-white font-medium transition-colors text-sm px-3 py-2 rounded-lg hover:bg-white/[0.05]"
                 >
                   {link.label}
                 </Link>
@@ -97,7 +115,7 @@ export default function Header() {
             )}
             <Link
               href="/free-audit"
-              className="bg-[#ff5e6c] text-white px-5 py-2 rounded-lg font-semibold hover:bg-[#e84d5b] transition-colors text-sm"
+              className="ml-2 bg-[#e8505b] text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-[#d4444e] transition-all duration-300 active:scale-[0.98]"
             >
               Free Audit
             </Link>
@@ -109,97 +127,100 @@ export default function Header() {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {mobileOpen ? (
+              <X weight="bold" className="w-5 h-5" />
+            ) : (
+              <List weight="bold" className="w-5 h-5" />
+            )}
           </button>
         </div>
+      </div>
 
-        {/* Mobile nav */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.nav
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden"
-            >
-              <div className="pb-4 border-t border-white/10 pt-4">
-                {navLinks.map((link) =>
-                  link.label === "Services" ? (
-                    <div key={link.href}>
-                      <button
-                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                        className="flex items-center justify-between w-full py-2 text-gray-300 hover:text-white font-medium"
-                      >
-                        {link.label}
-                        <svg
-                          className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+      {/* Mobile nav — full screen overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden fixed inset-0 top-0 bg-[#08081a]/95 backdrop-blur-3xl z-[-1]"
+          >
+            <div className="flex flex-col justify-center items-center min-h-[100dvh] gap-2 px-8">
+              {navLinks.map((link, i) =>
+                link.label === "Services" ? (
+                  <div key={link.href} className="w-full max-w-xs">
+                    <motion.button
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.06, ...spring }}
+                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                      className="flex items-center justify-between w-full py-3 text-2xl font-bold text-white"
+                    >
+                      {link.label}
+                      <CaretDown
+                        weight="bold"
+                        className={`w-5 h-5 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}
+                      />
+                    </motion.button>
+                    <AnimatePresence>
+                      {mobileServicesOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      <AnimatePresence>
-                        {mobileServicesOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="overflow-hidden"
-                          >
+                          {serviceSubLinks.map((sub) => (
                             <Link
-                              href="/services"
-                              className="block py-2 pl-4 text-sm text-gray-400 hover:text-white"
+                              key={sub.href}
+                              href={sub.href}
+                              className="block py-2 pl-4 text-lg text-gray-400 hover:text-white"
                               onClick={() => setMobileOpen(false)}
                             >
-                              All Services
+                              {sub.label}
                             </Link>
-                            {serviceSubLinks.map((sub) => (
-                              <Link
-                                key={sub.href}
-                                href={sub.href}
-                                className="block py-2 pl-4 text-sm text-gray-400 hover:text-white"
-                                onClick={() => setMobileOpen(false)}
-                              >
-                                {sub.label}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.06, ...spring }}
+                    className="w-full max-w-xs"
+                  >
                     <Link
-                      key={link.href}
                       href={link.href}
-                      className="block py-2 text-gray-300 hover:text-white font-medium"
+                      className="block py-3 text-2xl font-bold text-white"
                       onClick={() => setMobileOpen(false)}
                     >
                       {link.label}
                     </Link>
-                  )
-                )}
+                  </motion.div>
+                )
+              )}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, ...spring }}
+                className="w-full max-w-xs mt-4"
+              >
                 <Link
                   href="/free-audit"
-                  className="block mt-3 bg-[#ff5e6c] text-white px-5 py-2 rounded-lg text-center font-semibold hover:bg-[#e84d5b]"
+                  className="block bg-[#e8505b] text-white py-4 rounded-full text-center font-semibold text-lg"
                   onClick={() => setMobileOpen(false)}
                 >
                   Free Audit
                 </Link>
-              </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
-      </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -1,34 +1,35 @@
 import Link from "next/link";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0f0d2e] text-gray-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer className="bg-[#08081a] text-gray-500 border-t border-white/[0.06]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <h3 className="text-2xl font-bold text-white mb-3">
-              Media<span className="text-[#ff5e6c]">Nest</span>
+          <div>
+            <h3 className="text-xl font-bold text-white tracking-tight mb-4">
+              Media<span className="text-[#e8505b]">Nest</span>
             </h3>
-            <p className="text-sm leading-relaxed mb-5">
+            <p className="text-sm leading-relaxed mb-6 max-w-[35ch]">
               Your digital growth partner. We help local businesses dominate
-              online with website creation, YouTube, social media, SEO, and
-              Etsy services.
+              online with expert marketing services.
             </p>
             <Link
               href="/free-audit"
-              className="inline-block bg-[#ff5e6c] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#e84d5b] transition-colors"
+              className="inline-flex items-center gap-1.5 bg-[#e8505b] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#d4444e] transition-all active:scale-[0.98]"
             >
-              Get Your Free Audit
+              Get your free audit
+              <ArrowUpRight weight="bold" className="w-3.5 h-3.5" />
             </Link>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-white font-semibold mb-5 text-xs uppercase tracking-[0.15em]">
               Services
             </h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-3 text-sm">
               {[
                 { label: "Website Creation", slug: "website-creation" },
                 { label: "YouTube Automation", slug: "youtube-automation" },
@@ -47,12 +48,12 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-white font-semibold mb-5 text-xs uppercase tracking-[0.15em]">
               Company
             </h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-3 text-sm">
               {[
-                { href: "/about", label: "About Us" },
+                { href: "/about", label: "About" },
                 { href: "/services", label: "All Services" },
                 { href: "/pricing", label: "Pricing" },
                 { href: "/free-audit", label: "Free Audit" },
@@ -69,18 +70,18 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-white font-semibold mb-5 text-xs uppercase tracking-[0.15em]">
               Contact
             </h4>
-            <ul className="space-y-2.5 text-sm">
-              <li className="text-gray-500 italic">Address coming soon</li>
-              <li className="text-gray-500 italic">Phone coming soon</li>
-              <li className="text-gray-500 italic">Email coming soon</li>
+            <ul className="space-y-3 text-sm">
+              <li className="text-gray-600 italic">Address coming soon</li>
+              <li className="text-gray-600 italic">Phone coming soon</li>
+              <li className="text-gray-600 italic">Email coming soon</li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-6 text-sm text-center">
+        <div className="border-t border-white/[0.06] mt-14 pt-6 text-xs text-center text-gray-600">
           <p>&copy; {new Date().getFullYear()} MediaNest. All rights reserved.</p>
         </div>
       </div>
