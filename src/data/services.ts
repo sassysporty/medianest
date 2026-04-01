@@ -46,7 +46,7 @@ export const servicesFull: Service[] = [
       "Content management system",
       "SSL security & hosting setup",
     ],
-    price: "From $499",
+    price: "From $199",
   },
   {
     title: "YouTube Automation",
@@ -60,7 +60,7 @@ export const servicesFull: Service[] = [
       "Channel management & scheduling",
       "Analytics & performance reporting",
     ],
-    price: "From $399/mo",
+    price: "From $159/mo",
   },
   {
     title: "Social Media Management",
@@ -74,7 +74,7 @@ export const servicesFull: Service[] = [
       "Community engagement & responses",
       "Growth strategy & monthly reporting",
     ],
-    price: "From $199/mo",
+    price: "From $79/mo",
   },
   {
     title: "SEO",
@@ -88,7 +88,7 @@ export const servicesFull: Service[] = [
       "Local keyword research & targeting",
       "Monthly rankings & traffic reports",
     ],
-    price: "From $149/mo",
+    price: "From $59/mo",
   },
   {
     title: "Etsy Service",
@@ -102,6 +102,6 @@ export const servicesFull: Service[] = [
       "Etsy Ads setup & management",
       "Sales analytics & recommendations",
     ],
-    price: "From $99",
+    price: "From $39",
   },
 ];
