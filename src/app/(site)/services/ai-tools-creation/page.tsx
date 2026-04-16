@@ -266,7 +266,9 @@ export default function AIToolsCreationPage() {
             className="flex flex-col items-center gap-3"
           >
             <a
-              href="mailto:medianestonline@gmail.com?subject=Custom%20AI%20Tool%20Project"
+              href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27m%20interested%20in%20a%20custom%20AI%20tool%20project.%20I%27d%20like%20to%20discuss%20my%20requirements%20and%20get%20a%20quote."
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 bg-[#e8505b] hover:bg-[#d4444e] text-white px-7 py-3.5 rounded-full font-semibold text-base transition-all duration-300 active:scale-[0.98]"
             >
               Discuss Your Project
@@ -566,7 +568,9 @@ export default function AIToolsCreationPage() {
               work begins.
             </p>
             <a
-              href="mailto:medianestonline@gmail.com?subject=Custom%20AI%20Tool%20Quote"
+              href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27d%20like%20a%20custom%20quote%20for%20an%20AI%20tool%20development%20project.%20Please%20let%20me%20know%20the%20next%20steps."
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 bg-[#e8505b] hover:bg-[#d4444e] text-white px-7 py-3.5 rounded-full font-semibold text-base transition-all duration-300 active:scale-[0.98]"
             >
               Get Your Custom Quote
@@ -642,7 +646,9 @@ export default function AIToolsCreationPage() {
               possible.
             </p>
             <a
-              href="mailto:medianestonline@gmail.com?subject=Custom%20AI%20Tool%20Project"
+              href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27m%20interested%20in%20a%20custom%20AI%20tool%20project.%20I%27d%20like%20to%20discuss%20my%20requirements%20and%20get%20a%20quote."
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 bg-[#e8505b] hover:bg-[#d4444e] text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 active:scale-[0.98]"
             >
               Start Your Project

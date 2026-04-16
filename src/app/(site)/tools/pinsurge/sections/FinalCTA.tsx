@@ -68,8 +68,10 @@ export default function PinSurgeFinalCTA() {
           transition={{ ...spring, delay: 0.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12"
         >
-          <Link
-            href="mailto:medianestonline@gmail.com?subject=PinSurge%20Purchase"
+          <a
+            href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27d%20like%20to%20purchase%20PinSurge%20for%20%2439.%20Please%20send%20me%20the%20details%20to%20get%20started."
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-[#08081a] px-7 py-3.5 rounded-full font-semibold text-base transition-all duration-300 active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(16,185,129,0.6)]"
           >
             Get PinSurge — $39
@@ -77,7 +79,7 @@ export default function PinSurgeFinalCTA() {
               weight="bold"
               className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
             />
-          </Link>
+          </a>
           <Link
             href="/tools"
             className="inline-flex items-center gap-2 bg-white/[0.06] hover:bg-white/[0.1] text-white px-7 py-3.5 rounded-full font-semibold text-base ring-1 ring-white/[0.12] transition-all duration-300 active:scale-[0.98]"

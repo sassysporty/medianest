@@ -244,13 +244,15 @@ export default function PricingPage() {
                     ))}
                   </ul>
                   <a
-                    href="mailto:medianestonline@gmail.com?subject=PinSurge%20Purchase"
+                    href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27d%20like%20to%20purchase%20PinSurge%20for%20%2439.%20Please%20send%20me%20the%20details%20to%20get%20started."
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block text-center py-3 rounded-lg font-semibold bg-rose-600 text-white hover:bg-rose-500 transition-colors"
                   >
                     Get PinSurge — $39
                   </a>
                   <p className="text-xs text-gray-500 text-center mt-3">
-                    Email us to purchase — access within 24 hours.
+                    Message us on WhatsApp — access within 24 hours.
                   </p>
                   <p className="text-xs text-gray-400 text-center mt-2">
                     PinSurge is the tool. AI providers have their own pricing.
@@ -328,7 +330,9 @@ export default function PricingPage() {
             ))}
           </div>
           <a
-            href="mailto:medianestonline@gmail.com?subject=Custom%20AI%20Tool%20Quote"
+            href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27d%20like%20a%20custom%20quote%20for%20an%20AI%20tool%20development%20project.%20Please%20let%20me%20know%20the%20next%20steps."
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900 transition-colors"
           >
             Get a Custom Quote →

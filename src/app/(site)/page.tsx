@@ -130,9 +130,9 @@ export default function Home() {
               className="lg:col-span-5 hidden lg:flex flex-col gap-4"
             >
               {[
-                { icon: <Globe weight="duotone" className="w-5 h-5" />, label: "Websites", desc: "From $199", delay: 0 },
-                { icon: <YoutubeLogo weight="duotone" className="w-5 h-5" />, label: "YouTube", desc: "From $159/mo", delay: 0.1 },
-                { icon: <ChatCircleDots weight="duotone" className="w-5 h-5" />, label: "Social Media", desc: "From $79/mo", delay: 0.2 },
+                { icon: <Globe weight="duotone" className="w-5 h-5" />, label: "Websites", desc: "From $79", delay: 0 },
+                { icon: <YoutubeLogo weight="duotone" className="w-5 h-5" />, label: "YouTube", desc: "From $59/mo", delay: 0.1 },
+                { icon: <ChatCircleDots weight="duotone" className="w-5 h-5" />, label: "Social Media", desc: "From $59/mo", delay: 0.2 },
                 { icon: <MagnifyingGlass weight="duotone" className="w-5 h-5" />, label: "SEO", desc: "From $59/mo", delay: 0.3 },
                 { icon: <Storefront weight="duotone" className="w-5 h-5" />, label: "Etsy", desc: "From $39", delay: 0.4, href: "/services/etsy-service" },
                 { icon: <Robot weight="duotone" className="w-5 h-5" />, label: "AI Tools", desc: "From $10/mo", delay: 0.5, href: "/tools", accent: true },
@@ -561,7 +561,9 @@ export default function Home() {
                 </div>
                 <div className="shrink-0 flex flex-col items-start md:items-end gap-2">
                   <a
-                    href="mailto:medianestonline@gmail.com?subject=Custom%20AI%20Tool%20Project"
+                    href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27m%20interested%20in%20a%20custom%20AI%20tool%20project.%20I%27d%20like%20to%20discuss%20my%20requirements%20and%20get%20a%20quote."
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group inline-flex items-center gap-2 bg-[#0f0f1a] hover:bg-[#1a1a2e] text-white px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 active:scale-[0.98]"
                   >
                     Discuss Your Project

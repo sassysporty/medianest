@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks, serviceSubLinks, aiToolsSubLinks } from "@/config/site";
 
@@ -15,10 +14,6 @@ import { CaretDown, List, X } from "@phosphor-icons/react";
 const spring = { type: "spring" as const, stiffness: 200, damping: 25 };
 
 export default function Header() {
-  const pathname = usePathname();
-  const isPageSurge = pathname?.startsWith("/tools/pagesurge");
-  const isPinSurge = pathname?.startsWith("/tools/pinsurge");
-  const isToolPage = isPageSurge || isPinSurge;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
@@ -123,21 +118,12 @@ export default function Header() {
                 </Link>
               )
             )}
-            {isToolPage ? (
-              <a
-                href={`mailto:medianestonline@gmail.com?subject=${isPageSurge ? "PageSurge" : "PinSurge"}%20Inquiry`}
-                className="ml-2 bg-emerald-500 text-[#08081a] px-5 py-2 rounded-full font-semibold text-sm hover:bg-emerald-400 transition-all duration-300 active:scale-[0.98]"
-              >
-                {isPageSurge ? "Get PageSurge" : "Get PinSurge"}
-              </a>
-            ) : (
-              <Link
-                href="/free-audit"
-                className="ml-2 bg-[#e8505b] text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-[#d4444e] transition-all duration-300 active:scale-[0.98]"
-              >
-                Free Audit
-              </Link>
-            )}
+            <Link
+              href="/free-audit"
+              className="ml-2 bg-[#e8505b] text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-[#d4444e] transition-all duration-300 active:scale-[0.98]"
+            >
+              Free Audit
+            </Link>
           </nav>
 
           {/* Mobile toggle */}
@@ -232,23 +218,13 @@ export default function Header() {
                 transition={{ delay: 0.4, ...spring }}
                 className="w-full max-w-xs mt-4"
               >
-                {isToolPage ? (
-                  <a
-                    href={`mailto:medianestonline@gmail.com?subject=${isPageSurge ? "PageSurge" : "PinSurge"}%20Inquiry`}
-                    className="block bg-emerald-500 text-[#08081a] py-4 rounded-full text-center font-semibold text-lg"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {isPageSurge ? "Get PageSurge" : "Get PinSurge"}
-                  </a>
-                ) : (
-                  <Link
-                    href="/free-audit"
-                    className="block bg-[#e8505b] text-white py-4 rounded-full text-center font-semibold text-lg"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    Free Audit
-                  </Link>
-                )}
+                <Link
+                  href="/free-audit"
+                  className="block bg-[#e8505b] text-white py-4 rounded-full text-center font-semibold text-lg"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Free Audit
+                </Link>
               </motion.div>
             </div>
           </motion.div>

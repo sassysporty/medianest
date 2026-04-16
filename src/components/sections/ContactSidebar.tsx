@@ -11,12 +11,14 @@ export default function ContactSidebar() {
         </h3>
         <div className="space-y-4 text-gray-600">
           <div>
-            <p className="font-medium text-gray-900">Email</p>
+            <p className="font-medium text-gray-900">WhatsApp</p>
             <a
-              href="mailto:medianestonline@gmail.com"
+              href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27d%20like%20to%20get%20in%20touch."
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-800 hover:underline"
             >
-              medianestonline@gmail.com
+              +39 392 395 2415
             </a>
           </div>
         </div>

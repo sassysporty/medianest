@@ -46,7 +46,7 @@ export const servicesFull: Service[] = [
       "Content management system",
       "SSL security & hosting setup",
     ],
-    price: "From $199",
+    price: "From $79",
   },
   {
     title: "YouTube Automation",
@@ -60,7 +60,7 @@ export const servicesFull: Service[] = [
       "Channel management & scheduling",
       "Analytics & performance reporting",
     ],
-    price: "From $159/mo",
+    price: "From $59/mo",
   },
   {
     title: "Social Media Management",
@@ -74,7 +74,7 @@ export const servicesFull: Service[] = [
       "Community engagement & responses",
       "Growth strategy & monthly reporting",
     ],
-    price: "From $79/mo",
+    price: "From $59/mo",
   },
   {
     title: "SEO",

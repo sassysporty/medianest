@@ -310,10 +310,12 @@ export default function ToolsPage() {
                 Email us to get notified when new tools launch.
               </p>
               <a
-                href="mailto:medianestonline@gmail.com?subject=AI%20Tools%20Early%20Access"
+                href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27m%20interested%20in%20early%20access%20to%20your%20new%20AI%20tools.%20Please%20keep%20me%20updated%21"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 active:scale-[0.98]"
               >
-                medianestonline@gmail.com
+                Chat on WhatsApp
                 <ArrowRight weight="bold" className="w-3.5 h-3.5" />
               </a>
             </div>

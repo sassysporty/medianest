@@ -12,7 +12,7 @@ export const pricingPlans: Record<string, PricingTier[]> = {
   "Website Creation": [
     {
       name: "Starter",
-      price: "$199",
+      price: "$79",
       period: " one-time",
       description: "Perfect for small businesses needing a clean, professional online presence.",
       features: [
@@ -27,8 +27,8 @@ export const pricingPlans: Record<string, PricingTier[]> = {
       cta: "Get Started",
     },
     {
-      name: "Professional",
-      price: "$499",
+      name: "Growth",
+      price: "$119",
       period: " one-time",
       description: "For businesses that need more pages, features, and advanced functionality.",
       features: [
@@ -45,8 +45,8 @@ export const pricingPlans: Record<string, PricingTier[]> = {
       highlighted: true,
     },
     {
-      name: "Premium",
-      price: "$1,199",
+      name: "Pro",
+      price: "$199",
       period: " one-time",
       description: "Full-scale websites with eCommerce, integrations, and premium features.",
       features: [
@@ -65,7 +65,7 @@ export const pricingPlans: Record<string, PricingTier[]> = {
   "YouTube Automation": [
     {
       name: "Starter",
-      price: "$159",
+      price: "$59",
       period: "/mo",
       description: "Perfect for channels just getting started or those posting 1-2x per week.",
       features: [
@@ -80,7 +80,7 @@ export const pricingPlans: Record<string, PricingTier[]> = {
     },
     {
       name: "Growth",
-      price: "$359",
+      price: "$99",
       period: "/mo",
       description: "For channels ready to scale with full content production and strategy.",
       features: [
@@ -97,8 +97,8 @@ export const pricingPlans: Record<string, PricingTier[]> = {
       highlighted: true,
     },
     {
-      name: "Full Automation",
-      price: "$799",
+      name: "Pro",
+      price: "$149",
       period: "/mo",
       description: "Complete hands-off channel management — we handle everything.",
       features: [
@@ -116,8 +116,8 @@ export const pricingPlans: Record<string, PricingTier[]> = {
   ],
   "Social Media Management": [
     {
-      name: "Essentials",
-      price: "$79",
+      name: "Starter",
+      price: "$59",
       period: "/mo",
       description: "Core social presence on 2 platforms with consistent posting.",
       features: [
@@ -132,7 +132,7 @@ export const pricingPlans: Record<string, PricingTier[]> = {
     },
     {
       name: "Growth",
-      price: "$199",
+      price: "$89",
       period: "/mo",
       description: "Expand your reach across multiple platforms with engagement management.",
       features: [
@@ -148,8 +148,8 @@ export const pricingPlans: Record<string, PricingTier[]> = {
       highlighted: true,
     },
     {
-      name: "Premium",
-      price: "$399",
+      name: "Pro",
+      price: "$129",
       period: "/mo",
       description: "Full-service social media across all platforms with paid ad management.",
       features: [
@@ -167,7 +167,7 @@ export const pricingPlans: Record<string, PricingTier[]> = {
   ],
   SEO: [
     {
-      name: "Local Starter",
+      name: "Starter",
       price: "$59",
       period: "/mo",
       description: "Essential local SEO to get found in your area.",
@@ -183,11 +183,11 @@ export const pricingPlans: Record<string, PricingTier[]> = {
     },
     {
       name: "Growth",
-      price: "$159",
+      price: "$99",
       period: "/mo",
       description: "Aggressive local + content SEO to dominate your market.",
       features: [
-        "Everything in Local Starter",
+        "Everything in Starter",
         "4 blog posts/month (1,500+ words)",
         "Technical SEO audit & fixes",
         "Local keyword research & targeting",
@@ -200,8 +200,8 @@ export const pricingPlans: Record<string, PricingTier[]> = {
       highlighted: true,
     },
     {
-      name: "Authority",
-      price: "$319",
+      name: "Pro",
+      price: "$149",
       period: "/mo",
       description: "Full SEO domination — content, technical, and local all covered.",
       features: [
@@ -251,19 +251,18 @@ export const pricingPlans: Record<string, PricingTier[]> = {
       highlighted: true,
     },
     {
-      name: "Full Management",
-      price: "$239",
-      period: "/mo",
-      description: "We run your Etsy shop — you focus on creating products.",
+      name: "100 Listing Optimization",
+      price: "$700",
+      period: " one-time",
+      description: "Comprehensive Etsy shop overhaul — 100 listings fully optimized.",
       features: [
-        "Everything in Growth",
-        "Unlimited listing optimizations",
-        "New listing creation & launch",
-        "Seasonal strategy planning",
-        "Advanced Etsy Ads optimization",
-        "Customer message management",
-        "Weekly strategy calls",
-        "Star Seller status support",
+        "100 listing optimization with SEO-optimized titles & descriptions",
+        "100 product tag sets",
+        "Shop banner & logo design",
+        "Category & section organization",
+        "Competitor analysis",
+        "Keyword research for all 100 listings",
+        "30 days of post-optimization support",
       ],
       cta: "Contact Us",
     },

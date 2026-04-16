@@ -1,29 +1,101 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import {
+  WEB3FORMS_ACCESS_KEY,
+  WEB3FORMS_ENDPOINT,
+  WEB3FORMS_AUTORESPONSE,
+} from "@/config/web3forms";
+
+interface FieldErrors {
+  name?: string;
+  email?: string;
+  url?: string;
+  message?: string;
+}
+
+const SERVICE_OPTIONS = [
+  "Website Creation",
+  "YouTube Automation",
+  "Social Media Management",
+  "SEO",
+  "Etsy Service",
+  "AI Tools",
+  "AI Tool Creation",
+] as const;
 
 export default function FreeAuditPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [bannerVisible, setBannerVisible] = useState(false);
+
+  useEffect(() => {
+    if (status === "error") {
+      setBannerVisible(true);
+      const timer = setTimeout(() => setBannerVisible(false), 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
+  function validate(form: HTMLFormElement): FieldErrors {
+    const fd = new FormData(form);
+    const errs: FieldErrors = {};
+
+    if (!fd.get("name")?.toString().trim()) errs.name = "Name is required.";
+    const email = fd.get("email")?.toString().trim() ?? "";
+    if (!email) errs.email = "Email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      errs.email = "Please enter a valid email address.";
+    const url = fd.get("website_url")?.toString().trim() ?? "";
+    if (!url) errs.url = "Website URL is required.";
+    else if (!/^https?:\/\/.+/.test(url))
+      errs.url = "URL must start with http:// or https://";
+
+    return errs;
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+
+    const fieldErrors = validate(form);
+    setErrors(fieldErrors);
+    if (Object.keys(fieldErrors).length > 0) return;
+
     setStatus("sending");
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData);
+    const formData = new FormData(form);
+
+    // Collect checked services into a single string
+    const services = SERVICE_OPTIONS.filter(
+      (s) => formData.get(`service_${s}`) === "on"
+    );
+    formData.delete("botcheck");
+
+    const data: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      if (!key.startsWith("service_")) {
+        data[key] = value.toString();
+      }
+    });
+    if (services.length > 0) {
+      data["services_interested_in"] = services.join(", ");
+    }
 
     try {
-      const res = await fetch("/api/audit", {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
+      const json = await res.json();
 
-      if (res.ok) {
+      if (res.ok && json.success) {
         setStatus("sent");
-        (e.target as HTMLFormElement).reset();
+        form.reset();
+        setErrors({});
       } else {
         setStatus("error");
       }
@@ -31,6 +103,13 @@ export default function FreeAuditPage() {
       setStatus("error");
     }
   }
+
+  function dismissBanner() {
+    setBannerVisible(false);
+  }
+
+  const inputBase =
+    "w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#e8505b] focus:border-transparent transition-colors";
 
   return (
     <>
@@ -46,8 +125,8 @@ export default function FreeAuditPage() {
                 Get Your Free Business Audit
               </h1>
               <p className="text-xl text-blue-100 mb-6 leading-relaxed">
-                Find out exactly what&apos;s holding your business back online. Our
-                experts will analyze your presence and deliver a personalized
+                Find out exactly what&apos;s holding your business back online.
+                Our experts will analyze your presence and deliver a personalized
                 action plan within 48 hours.
               </p>
               <div className="space-y-4">
@@ -58,7 +137,7 @@ export default function FreeAuditPage() {
                   "Custom growth roadmap with projected results",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
-                    <span className="text-amber-400 mt-1">✓</span>
+                    <span className="text-amber-400 mt-1">&#10003;</span>
                     <span className="text-blue-50">{item}</span>
                   </div>
                 ))}
@@ -69,7 +148,7 @@ export default function FreeAuditPage() {
             <div className="bg-white rounded-2xl p-8 text-gray-900">
               {status === "sent" ? (
                 <div className="text-center py-8">
-                  <div className="text-5xl mb-4">🎉</div>
+                  <div className="text-5xl mb-4">&#127881;</div>
                   <h3 className="text-2xl font-bold mb-2">
                     Audit Request Received!
                   </h3>
@@ -86,60 +165,194 @@ export default function FreeAuditPage() {
                   <p className="text-gray-500 text-sm mb-6">
                     Limited to 10 audits per month — spots fill up fast.
                   </p>
-                  {status === "error" && (
-                    <div className="mb-4 bg-red-50 border border-red-200 text-red-800 rounded-lg p-3 text-sm">
-                      Something went wrong. Please try again.
+
+                  {bannerVisible && status === "error" && (
+                    <div className="mb-4 bg-red-50 border border-red-200 text-red-800 rounded-lg p-3 text-sm flex items-start justify-between animate-[fadeIn_0.3s_ease-out]">
+                      <span>
+                        Something went wrong. Please try again or email us at{" "}
+                        <a
+                          href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27d%20like%20to%20get%20in%20touch."
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline font-semibold"
+                        >
+                          message us on WhatsApp
+                        </a>
+                      </span>
+                      <button
+                        onClick={dismissBanner}
+                        className="ml-2 text-red-600 hover:text-red-800 font-bold"
+                        aria-label="Dismiss"
+                      >
+                        &times;
+                      </button>
                     </div>
                   )}
+
                   <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <input
-                        type="text"
-                        name="name"
-                        required
-                        placeholder="Your Name"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
+                    {/* Web3Forms hidden fields */}
+                    <input
+                      type="hidden"
+                      name="access_key"
+                      value={WEB3FORMS_ACCESS_KEY}
+                    />
+                    <input
+                      type="hidden"
+                      name="from_name"
+                      value="MediaNest Free Audit Request"
+                    />
+                    <input
+                      type="hidden"
+                      name="_subject"
+                      value="New Free Audit Request — MediaNest Website"
+                    />
+                    <input type="hidden" name="_template" value="table" />
+                    <input
+                      type="hidden"
+                      name="_autoresponse"
+                      value={WEB3FORMS_AUTORESPONSE}
+                    />
+
+                    {/* Honeypot */}
+                    <div style={{ display: "none" }}>
+                      <input type="text" name="botcheck" />
                     </div>
-                    <div>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        placeholder="Email Address"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label
+                          htmlFor="audit-name"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="audit-name"
+                          name="name"
+                          required
+                          className={inputBase}
+                          placeholder="Your Name"
+                        />
+                        {errors.name && (
+                          <p className="mt-1 text-sm text-red-600">
+                            {errors.name}
+                          </p>
+                        )}
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="audit-email"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          id="audit-email"
+                          name="email"
+                          required
+                          className={inputBase}
+                          placeholder="you@email.com"
+                        />
+                        {errors.email && (
+                          <p className="mt-1 text-sm text-red-600">
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
                     </div>
+
                     <div>
+                      <label
+                        htmlFor="audit-url"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Website URL *
+                      </label>
                       <input
                         type="url"
-                        name="url"
-                        placeholder="Website, YouTube Channel, Etsy Shop, or Social Media URL"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="audit-url"
+                        name="website_url"
+                        required
+                        className={inputBase}
+                        placeholder="https://yourwebsite.com"
+                      />
+                      {errors.url && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {errors.url}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Which services are you interested in?
+                      </label>
+                      <div className="grid grid-cols-2 gap-2">
+                        {SERVICE_OPTIONS.map((service) => (
+                          <label
+                            key={service}
+                            className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              name={`service_${service}`}
+                              className="rounded border-gray-300 text-[#e8505b] focus:ring-[#e8505b]"
+                            />
+                            {service}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="audit-message"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Message or additional details
+                      </label>
+                      <textarea
+                        id="audit-message"
+                        name="message"
+                        rows={3}
+                        className={inputBase}
+                        placeholder="Anything else you'd like us to know..."
                       />
                     </div>
-                    <div>
-                      <select
-                        name="service"
-                        required
-                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                      >
-                        <option value="">What do you need help with?</option>
-                        <option value="youtube">YouTube Channel</option>
-                        <option value="social-media">Social Media</option>
-                        <option value="seo">SEO / Google Rankings</option>
-                        <option value="etsy">Etsy Shop</option>
-                        <option value="multiple">Multiple Services</option>
-                      </select>
-                    </div>
+
                     <button
                       type="submit"
                       disabled={status === "sending"}
-                      className="w-full bg-amber-500 text-gray-900 py-3 rounded-lg font-bold text-lg hover:bg-amber-400 transition-colors disabled:opacity-50"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#e8505b] text-white py-3 rounded-full font-bold text-lg hover:bg-[#d4444e] transition-all duration-300 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {status === "sending"
-                        ? "Submitting..."
-                        : "Get My Free Audit →"}
+                      {status === "sending" ? (
+                        <>
+                          <svg
+                            className="animate-spin h-5 w-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            />
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                            />
+                          </svg>
+                          Sending...
+                        </>
+                      ) : (
+                        "Get My Free Audit \u2192"
+                      )}
                     </button>
                     <p className="text-xs text-gray-400 text-center">
                       No credit card required. No strings attached.
@@ -161,22 +374,22 @@ export default function FreeAuditPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                icon: "📊",
+                icon: "\uD83D\uDCCA",
                 title: "Performance Analysis",
                 desc: "We analyze your current metrics, traffic, engagement, and conversions to find gaps and opportunities.",
               },
               {
-                icon: "🔍",
+                icon: "\uD83D\uDD0D",
                 title: "Competitor Research",
-                desc: "See how you stack up against competitors in your local market and what they're doing differently.",
+                desc: "See how you stack up against competitors in your local market and what they\u2019re doing differently.",
               },
               {
-                icon: "🎯",
+                icon: "\uD83C\uDFAF",
                 title: "Quick Wins",
                 desc: "Get 3-5 actionable improvements you can implement immediately for fast results.",
               },
               {
-                icon: "🗺️",
+                icon: "\uD83D\uDDFA\uFE0F",
                 title: "Growth Roadmap",
                 desc: "A custom 90-day plan showing exactly how to grow your online presence step by step.",
               },
@@ -204,7 +417,7 @@ export default function FreeAuditPage() {
               { value: "500+", label: "Audits Delivered" },
               { value: "92%", label: "Take Action on Recommendations" },
               { value: "48hr", label: "Average Delivery Time" },
-              { value: "4.9★", label: "Client Satisfaction" },
+              { value: "4.9\u2605", label: "Client Satisfaction" },
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="text-3xl font-bold text-amber-400">

@@ -126,8 +126,10 @@ export default function PinSurgePricing() {
             </div>
 
             <div className="text-center">
-              <Link
-                href="mailto:medianestonline@gmail.com?subject=PinSurge%20Purchase"
+              <a
+                href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27d%20like%20to%20purchase%20PinSurge%20for%20%2439.%20Please%20send%20me%20the%20details%20to%20get%20started."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-[#08081a] px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(16,185,129,0.6)]"
               >
                 Get PinSurge — $39
@@ -135,9 +137,9 @@ export default function PinSurgePricing() {
                   weight="bold"
                   className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5"
                 />
-              </Link>
+              </a>
               <p className="mt-3 text-sm text-gray-500">
-                Email us to purchase — you&apos;ll receive access within 24
+                Message us on WhatsApp — you&apos;ll receive access within 24
                 hours.
               </p>
             </div>

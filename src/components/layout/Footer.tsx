@@ -107,10 +107,12 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="mailto:medianestonline@gmail.com"
+                  href="https://wa.me/393923952415?text=Hi%20MediaNest%21%20I%27d%20like%20to%20get%20in%20touch."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  medianestonline@gmail.com
+                  WhatsApp: +39 392 395 2415
                 </a>
               </li>
             </ul>

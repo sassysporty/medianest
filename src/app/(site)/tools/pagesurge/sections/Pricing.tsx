@@ -170,8 +170,10 @@ export default function PageSurgePricing() {
                 ))}
               </ul>
 
-              <Link
-                href={`mailto:medianestonline@gmail.com?subject=${encodeURIComponent(`PageSurge ${plan.name} Plan Request`)}`}
+              <a
+                href={`https://wa.me/393923952415?text=${encodeURIComponent(`Hi MediaNest! I'd like to get the PageSurge ${plan.name} plan ($${plan.price}/mo). Please send me details on how to get started.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-[#08081a] px-6 py-3.5 rounded-full font-semibold text-base transition-all duration-300 active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(16,185,129,0.6)]"
               >
                 {plan.cta}
@@ -179,9 +181,9 @@ export default function PageSurgePricing() {
                   weight="bold"
                   className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
                 />
-              </Link>
+              </a>
               <p className="mt-3 text-xs text-gray-500 text-center">
-                Email us to get started — we&apos;ll set you up within 24 hours.
+                Message us on WhatsApp — we&apos;ll set you up within 24 hours.
               </p>
             </motion.div>
           ))}
