@@ -119,6 +119,41 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* AI Tools Creation */}
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            AI Tools Creation — Custom Projects
+          </h2>
+          <p className="text-gray-500 mb-8">
+            Every business is different. We scope and price each custom AI tool
+            project individually based on complexity, features, and timeline.
+            Contact us for a free consultation and custom quote.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto text-left mb-8">
+            {[
+              "Discovery call",
+              "Requirements document",
+              "Design and development",
+              "Testing and QA",
+              "Delivery and deployment",
+              "30 days of post-launch support",
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-2 text-sm text-gray-600">
+                <span className="text-green-500">✓</span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+          <a
+            href="mailto:medianestonline@gmail.com?subject=Custom%20AI%20Tool%20Quote"
+            className="inline-block bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900 transition-colors"
+          >
+            Get a Custom Quote →
+          </a>
+        </div>
+      </section>
+
       <CTASection
         title="Not Sure Which Plan Is Right?"
         subtitle="Book a free 30-minute strategy call and we'll recommend the perfect plan for your business."

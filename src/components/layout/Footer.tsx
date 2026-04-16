@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#08081a] text-gray-500 border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div>
             <h3 className="text-xl font-bold text-white tracking-tight mb-4">
@@ -36,6 +36,7 @@ export default function Footer() {
                 { label: "Social Media", slug: "social-media-management" },
                 { label: "SEO", slug: "seo" },
                 { label: "Etsy Service", slug: "etsy-service" },
+                { label: "AI Tools Creation", slug: "ai-tools-creation" },
               ].map((s) => (
                 <li key={s.slug}>
                   <Link href={`/services/${s.slug}`} className="hover:text-white transition-colors">
@@ -43,6 +44,31 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* AI Tools */}
+          <div>
+            <h4 className="text-white font-semibold mb-5 text-xs uppercase tracking-[0.15em]">
+              AI Tools
+            </h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link href="/tools/pagesurge" className="hover:text-white transition-colors">
+                  PageSurge — Facebook Automation
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/ai-tools-creation" className="hover:text-white transition-colors">
+                  Custom Development
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools" className="hover:text-white transition-colors">
+                  All AI Tools
+                </Link>
+              </li>
+              <li className="text-gray-600 italic">More tools coming soon</li>
             </ul>
           </div>
 
@@ -74,9 +100,14 @@ export default function Footer() {
               Contact
             </h4>
             <ul className="space-y-3 text-sm">
-              <li className="text-gray-600 italic">Address coming soon</li>
-              <li className="text-gray-600 italic">Phone coming soon</li>
-              <li className="text-gray-600 italic">Email coming soon</li>
+              <li>
+                <a
+                  href="mailto:medianestonline@gmail.com"
+                  className="hover:text-white transition-colors"
+                >
+                  medianestonline@gmail.com
+                </a>
+              </li>
             </ul>
           </div>
         </div>

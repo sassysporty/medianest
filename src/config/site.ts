@@ -26,6 +26,7 @@ export const siteConfig = {
 export const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/tools", label: "AI Tools" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -37,4 +38,10 @@ export const serviceSubLinks = [
   { href: "/services/social-media-management", label: "Social Media" },
   { href: "/services/seo", label: "SEO" },
   { href: "/services/etsy-service", label: "Etsy Service" },
+  { href: "/services/ai-tools-creation", label: "AI Tools Creation" },
+];
+
+export const aiToolsSubLinks = [
+  { href: "/tools/pagesurge", label: "PageSurge — Facebook Automation" },
+  { href: "/services/ai-tools-creation", label: "Custom AI Tool Development" },
 ];

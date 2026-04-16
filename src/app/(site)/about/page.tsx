@@ -18,7 +18,7 @@ export default function AboutPage() {
       <PageHero
         tag="Who We Are"
         title="About MediaNest"
-        subtitle="We're a team of digital growth specialists dedicated to helping local businesses build a powerful online presence — without the complexity."
+        subtitle="We're a marketing technology company — offering done-for-you services, ready-made AI tools, and custom AI development to help businesses grow online."
       />
 
       {/* Our Story */}
@@ -38,15 +38,18 @@ export default function AboutPage() {
                 <p>
                   After watching countless small businesses struggle with their
                   online visibility, we built MediaNest to be different. We
-                  specialize in the platforms that matter most — custom websites,
-                  YouTube, social media, Google, and Etsy — and we deliver
-                  results you can measure.
+                  operate in three ways: done-for-you digital marketing services
+                  (websites, SEO, social media, YouTube, Etsy), ready-made AI
+                  tools that marketers use themselves (like PageSurge), and
+                  custom AI tool development for businesses that need something
+                  unique.
                 </p>
                 <p>
-                  We&apos;ve helped local businesses across the country grow
-                  their audience and revenue through strategic digital marketing.
-                  From restaurants to retail shops, from service providers to
-                  artisan sellers — we know what works for local.
+                  We don&apos;t just use AI — we build it. From ready-made
+                  automation tools to fully custom AI systems, MediaNest helps
+                  businesses work smarter, not harder. We live at the
+                  intersection of digital marketing and AI — not just an agency,
+                  but a marketing technology company.
                 </p>
               </div>
             </div>
@@ -106,8 +109,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "All-In-One Partner",
-                desc: "Websites, YouTube, social media, SEO, and Etsy — everything under one roof. No juggling multiple agencies or freelancers.",
+                title: "Services + Tools + Custom Dev",
+                desc: "Done-for-you marketing, ready-made AI tools, and custom AI development — all under one roof. No other company offers all three.",
               },
               {
                 title: "Results Over Vanity Metrics",

@@ -1,10 +1,7 @@
 import { siteConfig } from "@/config/site";
 
 export default function ContactSidebar() {
-  const { contact, hours } = siteConfig;
-  const hasAddress = contact.address.street || contact.address.city;
-  const hasPhone = contact.phone;
-  const hasEmail = contact.email;
+  const { hours } = siteConfig;
 
   return (
     <div className="space-y-8">
@@ -13,53 +10,15 @@ export default function ContactSidebar() {
           Contact Information
         </h3>
         <div className="space-y-4 text-gray-600">
-          {hasAddress ? (
-            <div>
-              <p className="font-medium text-gray-900">Address</p>
-              <p>{contact.address.street}</p>
-              <p>
-                {contact.address.city}, {contact.address.state}{" "}
-                {contact.address.zip}
-              </p>
-            </div>
-          ) : (
-            <div>
-              <p className="font-medium text-gray-900">Address</p>
-              <p className="text-gray-400 italic">Coming soon</p>
-            </div>
-          )}
-          {hasPhone ? (
-            <div>
-              <p className="font-medium text-gray-900">Phone</p>
-              <a
-                href={contact.phoneHref}
-                className="text-blue-800 hover:underline"
-              >
-                {contact.phone}
-              </a>
-            </div>
-          ) : (
-            <div>
-              <p className="font-medium text-gray-900">Phone</p>
-              <p className="text-gray-400 italic">Coming soon</p>
-            </div>
-          )}
-          {hasEmail ? (
-            <div>
-              <p className="font-medium text-gray-900">Email</p>
-              <a
-                href={`mailto:${contact.email}`}
-                className="text-blue-800 hover:underline"
-              >
-                {contact.email}
-              </a>
-            </div>
-          ) : (
-            <div>
-              <p className="font-medium text-gray-900">Email</p>
-              <p className="text-gray-400 italic">Coming soon</p>
-            </div>
-          )}
+          <div>
+            <p className="font-medium text-gray-900">Email</p>
+            <a
+              href="mailto:medianestonline@gmail.com"
+              className="text-blue-800 hover:underline"
+            >
+              medianestonline@gmail.com
+            </a>
+          </div>
         </div>
       </div>
 

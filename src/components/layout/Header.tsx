@@ -2,16 +2,24 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { navLinks, serviceSubLinks } from "@/config/site";
+import { navLinks, serviceSubLinks, aiToolsSubLinks } from "@/config/site";
+
+const dropdownMap: Record<string, { href: string; label: string }[]> = {
+  Services: serviceSubLinks,
+  "AI Tools": aiToolsSubLinks,
+};
 import { CaretDown, List, X } from "@phosphor-icons/react";
 
 const spring = { type: "spring" as const, stiffness: 200, damping: 25 };
 
 export default function Header() {
+  const pathname = usePathname();
+  const isPageSurge = pathname?.startsWith("/tools/pagesurge");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +32,7 @@ export default function Header() {
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setServicesOpen(false);
+        setOpenDropdown(null);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -54,13 +62,13 @@ export default function Header() {
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) =>
-              link.label === "Services" ? (
+              dropdownMap[link.label] ? (
                 <div
                   key={link.href}
                   ref={dropdownRef}
                   className="relative"
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
+                  onMouseEnter={() => setOpenDropdown(link.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <Link
                     href={link.href}
@@ -69,12 +77,12 @@ export default function Header() {
                     {link.label}
                     <CaretDown
                       weight="bold"
-                      className={`w-3 h-3 transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`}
+                      className={`w-3 h-3 transition-transform duration-300 ${openDropdown === link.label ? "rotate-180" : ""}`}
                     />
                   </Link>
 
                   <AnimatePresence>
-                    {servicesOpen && (
+                    {openDropdown === link.label && (
                       <motion.div
                         initial={{ opacity: 0, y: 8, scale: 0.96 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -82,14 +90,14 @@ export default function Header() {
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                         className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
                       >
-                        <div className="bg-[#0f0f1a] ring-1 ring-white/[0.08] rounded-2xl py-2 w-52 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+                        <div className="bg-[#0f0f1a] ring-1 ring-white/[0.08] rounded-2xl py-2 w-64 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
                           <Link
-                            href="/services"
+                            href={link.href}
                             className="block px-4 py-2.5 text-sm text-white font-semibold hover:bg-white/[0.05] border-b border-white/[0.06] mx-2 rounded-lg"
                           >
-                            All Services
+                            {link.label === "Services" ? "All Services" : `All ${link.label}`}
                           </Link>
-                          {serviceSubLinks.map((sub) => (
+                          {dropdownMap[link.label].map((sub) => (
                             <Link
                               key={sub.href}
                               href={sub.href}
@@ -113,12 +121,21 @@ export default function Header() {
                 </Link>
               )
             )}
-            <Link
-              href="/free-audit"
-              className="ml-2 bg-[#e8505b] text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-[#d4444e] transition-all duration-300 active:scale-[0.98]"
-            >
-              Free Audit
-            </Link>
+            {isPageSurge ? (
+              <a
+                href="mailto:medianestonline@gmail.com?subject=PageSurge%20Inquiry"
+                className="ml-2 bg-emerald-500 text-[#08081a] px-5 py-2 rounded-full font-semibold text-sm hover:bg-emerald-400 transition-all duration-300 active:scale-[0.98]"
+              >
+                Get PageSurge
+              </a>
+            ) : (
+              <Link
+                href="/free-audit"
+                className="ml-2 bg-[#e8505b] text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-[#d4444e] transition-all duration-300 active:scale-[0.98]"
+              >
+                Free Audit
+              </Link>
+            )}
           </nav>
 
           {/* Mobile toggle */}
@@ -148,30 +165,34 @@ export default function Header() {
           >
             <div className="flex flex-col justify-center items-center min-h-[100dvh] gap-2 px-8">
               {navLinks.map((link, i) =>
-                link.label === "Services" ? (
+                dropdownMap[link.label] ? (
                   <div key={link.href} className="w-full max-w-xs">
                     <motion.button
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.06, ...spring }}
-                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                      onClick={() =>
+                        setMobileOpenDropdown(
+                          mobileOpenDropdown === link.label ? null : link.label
+                        )
+                      }
                       className="flex items-center justify-between w-full py-3 text-2xl font-bold text-white"
                     >
                       {link.label}
                       <CaretDown
                         weight="bold"
-                        className={`w-5 h-5 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}
+                        className={`w-5 h-5 transition-transform ${mobileOpenDropdown === link.label ? "rotate-180" : ""}`}
                       />
                     </motion.button>
                     <AnimatePresence>
-                      {mobileServicesOpen && (
+                      {mobileOpenDropdown === link.label && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           className="overflow-hidden"
                         >
-                          {serviceSubLinks.map((sub) => (
+                          {dropdownMap[link.label].map((sub) => (
                             <Link
                               key={sub.href}
                               href={sub.href}
@@ -209,13 +230,23 @@ export default function Header() {
                 transition={{ delay: 0.4, ...spring }}
                 className="w-full max-w-xs mt-4"
               >
-                <Link
-                  href="/free-audit"
-                  className="block bg-[#e8505b] text-white py-4 rounded-full text-center font-semibold text-lg"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Free Audit
-                </Link>
+                {isPageSurge ? (
+                  <a
+                    href="mailto:medianestonline@gmail.com?subject=PageSurge%20Inquiry"
+                    className="block bg-emerald-500 text-[#08081a] py-4 rounded-full text-center font-semibold text-lg"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Get PageSurge
+                  </a>
+                ) : (
+                  <Link
+                    href="/free-audit"
+                    className="block bg-[#e8505b] text-white py-4 rounded-full text-center font-semibold text-lg"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Free Audit
+                  </Link>
+                )}
               </motion.div>
             </div>
           </motion.div>
