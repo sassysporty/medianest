@@ -22,6 +22,7 @@ import {
   ShoppingCart,
   Megaphone,
   ForkKnife,
+  PinterestLogo,
 } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 
@@ -98,7 +99,7 @@ const whyPoints = [
   {
     icon: ShieldCheck,
     title: "Proof in Production",
-    desc: "PageSurge is our own AI tool used by real marketers managing real Facebook pages. We build what works, not what looks good in a demo.",
+    desc: "PageSurge (Facebook automation) and PinSurge (Pinterest automation) are our own AI tools used by real marketers every day. We build what works — not what looks good in a demo. When we build a custom tool for you, it gets the same level of quality and real-world testing.",
   },
   {
     icon: Check,
@@ -132,6 +133,11 @@ const useCases = [
     icon: ForkKnife,
     industry: "Local Restaurant Chain",
     desc: "Built a review monitoring tool that uses AI to analyze customer reviews across platforms and suggests response templates.",
+  },
+  {
+    icon: PinterestLogo,
+    industry: "Pinterest Marketing Agency",
+    desc: "Built a bulk pin creation tool that scrapes product URLs, generates AI images, adds text overlays, writes SEO descriptions, and exports ready-to-upload CSV files for Pinterest.",
   },
 ];
 

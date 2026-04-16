@@ -19,6 +19,8 @@ import {
   X,
   Check,
   Code,
+  FacebookLogo,
+  PinterestLogo,
 } from "@phosphor-icons/react";
 
 const spring = { type: "spring" as const, stiffness: 100, damping: 20 };
@@ -133,7 +135,7 @@ export default function Home() {
                 { icon: <ChatCircleDots weight="duotone" className="w-5 h-5" />, label: "Social Media", desc: "From $79/mo", delay: 0.2 },
                 { icon: <MagnifyingGlass weight="duotone" className="w-5 h-5" />, label: "SEO", desc: "From $59/mo", delay: 0.3 },
                 { icon: <Storefront weight="duotone" className="w-5 h-5" />, label: "Etsy", desc: "From $39", delay: 0.4, href: "/services/etsy-service" },
-                { icon: <Robot weight="duotone" className="w-5 h-5" />, label: "AI Tools", desc: "From $10/mo", delay: 0.5, href: "/tools/pagesurge", accent: true },
+                { icon: <Robot weight="duotone" className="w-5 h-5" />, label: "AI Tools", desc: "From $10/mo", delay: 0.5, href: "/tools", accent: true },
               ].map((card) => (
                 <motion.div
                   key={card.label}
@@ -203,7 +205,7 @@ export default function Home() {
                       "Competitors outranking you on Google",
                       "No time to create YouTube content",
                       "Etsy shop buried under thousands of sellers",
-                      "Paying hundreds per month for AI tools, schedulers, and content apps that don't talk to each other",
+                      "Paying for Canva, ChatGPT, schedulers, and Pinterest tools separately — none of them work together",
                       "No control — you either do everything yourself manually or hand everything to an expensive agency",
                     ].map((problem, i) => (
                       <motion.div
@@ -245,7 +247,7 @@ export default function Home() {
                       "Top Google rankings for your target keywords",
                       "A growing YouTube channel running on autopilot",
                       "An optimized Etsy shop that gets found and sells",
-                      "One affordable AI tool that generates content, schedules posts, and tracks results — with free AI built in",
+                      "All-in-one AI tools for Facebook and Pinterest. Generate content, schedule posts, export in bulk — starting at $10/mo or $39 one-time",
                       "Your choice — hire us to handle it, or use our AI tools and keep full control yourself",
                     ].map((solution, i) => (
                       <motion.div
@@ -410,142 +412,163 @@ export default function Home() {
               Who Want Control
             </motion.h2>
             <motion.p variants={fadeUp} transition={spring} className="text-gray-500 text-lg max-w-[62ch] leading-relaxed">
-              Not everyone needs an agency. Some marketers want powerful tools they
-              can run themselves. That&apos;s why we build AI-powered desktop and
-              web apps that automate the hard parts of digital marketing.
+              Powerful, affordable tools that automate your digital marketing.
+              Use them yourself — no agency needed. Need something custom? We build that too.
             </motion.p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={spring}
-          >
-            <div className="bg-[#08081a] rounded-[2rem] p-1.5 ring-1 ring-white/[0.06]">
-              <div className="bg-gradient-to-br from-[#0f0f1a] to-[#141428] rounded-[calc(2rem-6px)] overflow-hidden">
-                <div className="grid grid-cols-1 lg:grid-cols-2">
-                  {/* Left — Dashboard Preview */}
-                  <div className="relative p-8 md:p-10 lg:p-12 flex items-center justify-center bg-gradient-to-br from-purple-600/10 to-purple-600/5 border-b lg:border-b-0 lg:border-r border-white/[0.06]">
-                    <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute top-[20%] left-[20%] w-[300px] h-[300px] bg-purple-500/15 rounded-full blur-[100px]" />
+          {/* Product Cards Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* PageSurge Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={spring}
+            >
+              <div className="bg-[#08081a] rounded-[2rem] p-1.5 ring-1 ring-white/[0.06] h-full">
+                <div className="bg-gradient-to-br from-[#0f0f1a] to-[#141428] rounded-[calc(2rem-6px)] p-8 md:p-10 h-full flex flex-col">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center shadow-[0_10px_30px_-10px_rgba(126,34,206,0.6)]">
+                      <FacebookLogo weight="fill" className="w-8 h-8 text-white" />
                     </div>
-                    <div className="relative w-full max-w-sm">
-                      <div className="bg-white/[0.04] ring-1 ring-white/[0.1] rounded-2xl p-6 backdrop-blur-sm">
-                        <div className="flex items-center gap-2 mb-4">
-                          <span className="w-3 h-3 rounded-full bg-[#e8505b]/60" />
-                          <span className="w-3 h-3 rounded-full bg-[#f0a500]/60" />
-                          <span className="w-3 h-3 rounded-full bg-emerald-500/60" />
-                          <span className="ml-auto text-[10px] text-gray-600 font-mono">PageSurge v1.0</span>
-                        </div>
-                        <div className="space-y-3">
-                          <div className="bg-white/[0.04] rounded-xl p-4 ring-1 ring-white/[0.06]">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                                <Robot weight="duotone" className="w-4 h-4 text-purple-300" />
-                              </div>
-                              <div>
-                                <div className="text-xs text-white font-semibold">Caption Studio</div>
-                                <div className="text-[10px] text-gray-500">3 captions generated</div>
-                              </div>
-                            </div>
-                            <div className="space-y-1.5">
-                              <div className="h-2 bg-white/[0.06] rounded-full w-full" />
-                              <div className="h-2 bg-white/[0.06] rounded-full w-4/5" />
-                              <div className="h-2 bg-white/[0.06] rounded-full w-3/5" />
-                            </div>
-                          </div>
-                          <div className="grid grid-cols-3 gap-2">
-                            {["23 Pages", "142 Posts", "12.4K Reach"].map((stat) => (
-                              <div key={stat} className="bg-white/[0.04] rounded-lg p-2.5 ring-1 ring-white/[0.06] text-center">
-                                <div className="text-xs font-bold text-white">{stat.split(" ")[0]}</div>
-                                <div className="text-[9px] text-gray-500">{stat.split(" ")[1]}</div>
-                              </div>
-                            ))}
-                          </div>
-                          <div className="bg-emerald-500/10 rounded-lg px-3 py-2 ring-1 ring-emerald-400/20 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                            <span className="text-[10px] text-emerald-300 font-medium">Scheduling 30 posts across 5 pages...</span>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-center text-xs text-gray-600 mt-4">PageSurge Dashboard Preview</p>
-                    </div>
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-purple-500/10 ring-1 ring-purple-400/30 text-purple-200 text-[10px] font-semibold uppercase tracking-[0.15em]">
+                      Monthly Plans
+                    </span>
                   </div>
 
-                  {/* Right — Product Info */}
-                  <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 ring-1 ring-purple-400/30 mb-5 w-fit">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-purple-200 font-semibold text-[10px] uppercase tracking-[0.2em]">Flagship Product</span>
-                    </div>
+                  <h3 className="text-2xl font-bold text-white tracking-tight mb-1">PageSurge</h3>
+                  <p className="text-purple-300 text-sm font-medium mb-4">Facebook Page Automation</p>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
+                    Generate AI captions, schedule posts, manage unlimited Facebook pages,
+                    and track analytics — all from one desktop app. Free AI included with
+                    Ollama. Works on Mac and Windows.
+                  </p>
 
-                    <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-3">
-                      PageSurge — Facebook Page Automation
-                    </h3>
-                    <p className="text-gray-400 leading-relaxed mb-6 max-w-[50ch]">
-                      Generate AI captions, schedule posts, manage unlimited
-                      Facebook pages, and track analytics — all from one desktop
-                      app. Free AI included with Ollama. Works on Mac and Windows.
-                    </p>
+                  <ul className="space-y-2.5 mb-6">
+                    {[
+                      "Manage 100+ Facebook pages from one dashboard",
+                      "9 built-in studios — captions, images, video, and more",
+                      "Starts at just $10/month — no contracts",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-gray-300">
+                        <Check weight="bold" className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                    <ul className="space-y-3 mb-8">
-                      {[
-                        "Manage up to 100+ Facebook accounts and unlimited pages",
-                        "9 built-in studios — captions, images, video, analytics, and more",
-                        "Starts at just $10/month — no contracts",
-                      ].map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-sm text-gray-300">
-                          <Check weight="bold" className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Link
-                      href="/tools/pagesurge"
-                      className="group inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-6 py-3.5 rounded-full font-semibold text-base transition-all duration-300 active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(126,34,206,0.6)] w-fit"
-                    >
-                      Learn More About PageSurge
-                      <ArrowRight weight="bold" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
-                    </Link>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {["From $10/mo", "Desktop App", "Mac & Windows"].map((badge) => (
+                      <span key={badge} className="inline-flex items-center px-3 py-1 rounded-full bg-white/[0.06] ring-1 ring-white/[0.1] text-xs font-semibold text-gray-300">
+                        {badge}
+                      </span>
+                    ))}
                   </div>
+
+                  <Link
+                    href="/tools/pagesurge"
+                    className="group inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-6 py-3.5 rounded-full font-semibold text-base transition-all duration-300 active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(126,34,206,0.6)] w-fit mt-auto"
+                  >
+                    Learn More
+                    <ArrowRight weight="bold" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
+                  </Link>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* PinSurge Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ ...spring, delay: 0.1 }}
+            >
+              <div className="bg-[#08081a] rounded-[2rem] p-1.5 ring-1 ring-white/[0.06] h-full">
+                <div className="bg-gradient-to-br from-[#0f0f1a] to-[#141428] rounded-[calc(2rem-6px)] p-8 md:p-10 h-full flex flex-col">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center shadow-[0_10px_30px_-10px_rgba(225,29,72,0.6)]">
+                      <PinterestLogo weight="fill" className="w-8 h-8 text-white" />
+                    </div>
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-rose-500/10 ring-1 ring-rose-400/30 text-rose-200 text-[10px] font-semibold uppercase tracking-[0.15em]">
+                      One-Time Purchase
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-white tracking-tight mb-1">PinSurge</h3>
+                  <p className="text-rose-300 text-sm font-medium mb-4">Bulk Pinterest Pin Creation</p>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
+                    Turn any URL into publish-ready Pinterest pins. AI scrapes your content,
+                    generates images, adds styled text overlays, writes SEO titles and
+                    descriptions, schedules pins, and exports a Pinterest-ready CSV.
+                  </p>
+
+                  <ul className="space-y-2.5 mb-6">
+                    {[
+                      "AI-generated images with professional text overlays",
+                      "SEO-optimized titles, descriptions, and board matching",
+                      "Built-in scheduling and one-click CSV export",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-gray-300">
+                        <Check weight="bold" className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {["$39 One-Time", "Web-Based App", "Free AI with Ollama"].map((badge) => (
+                      <span key={badge} className="inline-flex items-center px-3 py-1 rounded-full bg-white/[0.06] ring-1 ring-white/[0.1] text-xs font-semibold text-gray-300">
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link
+                    href="/tools/pinsurge"
+                    className="group inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-500 text-white px-6 py-3.5 rounded-full font-semibold text-base transition-all duration-300 active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(225,29,72,0.6)] w-fit mt-auto"
+                  >
+                    Learn More
+                    <ArrowRight weight="bold" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
           {/* Custom AI Dev card */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ ...spring, delay: 0.1 }}
-            className="mt-8"
+            transition={{ ...spring, delay: 0.2 }}
+            className="mt-6"
           >
-            <div className="bg-[#0f0f1a] rounded-2xl ring-1 ring-white/[0.08] p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6">
-              <div className="w-14 h-14 rounded-2xl bg-[#e8505b]/15 ring-1 ring-[#e8505b]/30 flex items-center justify-center shrink-0">
-                <Code weight="duotone" className="w-7 h-7 text-[#e8505b]" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-white tracking-tight mb-1">
-                  Need Something Custom?
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-[55ch]">
-                  PageSurge doesn&apos;t fit your exact workflow? We&apos;ll build a custom
-                  AI tool specifically for your business. From AI chatbots to content
-                  automation to data analysis — tell us what you need and we&apos;ll make it.
-                </p>
-              </div>
-              <div className="shrink-0 flex flex-col items-start md:items-end gap-2">
-                <a
-                  href="mailto:medianestonline@gmail.com?subject=Custom%20AI%20Tool%20Project"
-                  className="group inline-flex items-center gap-2 bg-[#e8505b] hover:bg-[#d4444e] text-white px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 active:scale-[0.98]"
-                >
-                  Discuss Your Project
-                  <ArrowRight weight="bold" className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </a>
-                <span className="text-[11px] text-gray-600">No fixed pricing — just a conversation.</span>
+            <div className="bg-[#f1f1f4] ring-1 ring-black/[0.04] rounded-2xl p-1.5">
+              <div className="bg-white rounded-[calc(1rem-2px)] p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]">
+                <div className="w-14 h-14 rounded-2xl bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center shrink-0">
+                  <Code weight="duotone" className="w-7 h-7 text-gray-600" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-[#0f0f1a] tracking-tight mb-1">
+                    Need Something Custom?
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed max-w-[55ch]">
+                    Our tools don&apos;t fit your exact workflow? We&apos;ll build a custom
+                    AI tool specifically for your business. From AI chatbots to content
+                    automation to data analysis — tell us what you need and we&apos;ll make it.
+                  </p>
+                </div>
+                <div className="shrink-0 flex flex-col items-start md:items-end gap-2">
+                  <a
+                    href="mailto:medianestonline@gmail.com?subject=Custom%20AI%20Tool%20Project"
+                    className="group inline-flex items-center gap-2 bg-[#0f0f1a] hover:bg-[#1a1a2e] text-white px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 active:scale-[0.98]"
+                  >
+                    Discuss Your Project
+                    <ArrowRight weight="bold" className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </a>
+                  <span className="text-[11px] text-gray-400">No fixed pricing — just a conversation.</span>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -660,7 +683,7 @@ export default function Home() {
 
                   <div className="space-y-5 flex-1">
                     {[
-                      { step: "01", title: "Pick Your Tool", desc: "Browse our AI tools and choose what fits your workflow." },
+                      { step: "01", title: "Pick Your Tool", desc: "Browse our AI tools — PageSurge for Facebook automation ($10/mo), PinSurge for Pinterest automation ($39 one-time), or request a custom tool built for your specific needs." },
                       { step: "02", title: "Subscribe", desc: "Choose a plan starting at $10/month. Email us and get set up in 24 hours." },
                       { step: "03", title: "Automate", desc: "Connect your accounts, generate content with AI, and schedule everything." },
                       { step: "04", title: "Scale", desc: "Manage more pages, more platforms, and more clients without extra effort." },
@@ -737,7 +760,7 @@ export default function Home() {
                   { icon: <ChartLineUp weight="duotone" className="w-5 h-5" />, title: "Results-driven", desc: "Every strategy is backed by data. We optimize continuously for maximum ROI." },
                   { icon: <CurrencyDollar weight="duotone" className="w-5 h-5" />, title: "Transparent pricing", desc: "No hidden fees, no surprise charges. You know exactly what you're paying for." },
                   { icon: <Headset weight="duotone" className="w-5 h-5" />, title: "Dedicated support", desc: "A real team behind your growth — with regular calls and proactive recommendations." },
-                  { icon: <Robot weight="duotone" className="w-5 h-5" />, title: "AI-Powered Everything", desc: "We use AI tools ourselves, we sell ready-made AI tools, and we build custom AI tools for your business. No other agency offers all three." },
+                  { icon: <Robot weight="duotone" className="w-5 h-5" />, title: "AI-Powered Everything", desc: "We build and sell AI tools that marketers actually use. PageSurge automates Facebook pages. PinSurge automates Pinterest pins. And if you need something custom, we'll build it. Free AI options included in every tool." },
                 ].map((item, i) => (
                   <motion.div
                     key={item.title}

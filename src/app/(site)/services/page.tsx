@@ -124,6 +124,27 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* AI Tools Cross-Promotion */}
+      <section className="py-12 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-purple-50 rounded-2xl ring-1 ring-purple-200/50 p-8 text-center">
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Looking for self-serve tools instead? Check out{" "}
+              <Link href="/tools/pagesurge" className="text-purple-700 font-semibold hover:text-purple-600 transition-colors">
+                PageSurge for Facebook automation ($10/mo)
+              </Link>{" "}
+              and{" "}
+              <Link href="/tools/pinsurge" className="text-rose-600 font-semibold hover:text-rose-500 transition-colors">
+                PinSurge for Pinterest automation ($39 one-time)
+              </Link>{" "}
+              <Link href="/tools" className="inline-flex items-center gap-1 text-purple-700 font-semibold hover:text-purple-600 transition-colors">
+                → Browse all AI Tools
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
       <CTASection
         title="Not Sure What You Need?"
         subtitle="Book a free consultation and we'll recommend the right services for your business and budget."

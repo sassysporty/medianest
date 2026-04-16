@@ -40,16 +40,27 @@ export default function AboutPage() {
                   online visibility, we built MediaNest to be different. We
                   operate in three ways: done-for-you digital marketing services
                   (websites, SEO, social media, YouTube, Etsy), ready-made AI
-                  tools that marketers use themselves (like PageSurge), and
-                  custom AI tool development for businesses that need something
-                  unique.
+                  tools that marketers use themselves, and custom AI tool
+                  development for businesses that need something unique.
                 </p>
                 <p>
-                  We don&apos;t just use AI — we build it. From ready-made
-                  automation tools to fully custom AI systems, MediaNest helps
-                  businesses work smarter, not harder. We live at the
-                  intersection of digital marketing and AI — not just an agency,
-                  but a marketing technology company.
+                  Our AI tools — PageSurge for Facebook page automation and
+                  PinSurge for Pinterest pin creation — are used by marketers
+                  and agencies to automate their social media content at scale.
+                  Ready-made AI tools that marketers use themselves — PageSurge
+                  automates Facebook pages with AI captions, scheduling, and
+                  analytics. PinSurge turns any URL into publish-ready Pinterest
+                  pins with AI images, text overlays, and SEO descriptions. Both
+                  include free AI options so ongoing costs stay near zero.
+                </p>
+                <p>
+                  We don&apos;t just use AI — we build it. PageSurge and
+                  PinSurge are live and used by real marketers every day. We
+                  practice what we preach. We launched PageSurge for Facebook,
+                  then PinSurge for Pinterest, and more tools are in
+                  development. We live at the intersection of digital marketing
+                  and AI — not just an agency, but a marketing technology
+                  company.
                 </p>
               </div>
             </div>
@@ -110,7 +121,7 @@ export default function AboutPage() {
             {[
               {
                 title: "Services + Tools + Custom Dev",
-                desc: "Done-for-you marketing, ready-made AI tools, and custom AI development — all under one roof. No other company offers all three.",
+                desc: "Done-for-you marketing, two production AI tools (PageSurge and PinSurge), and custom AI development — all under one roof. No other company offers all three.",
               },
               {
                 title: "Results Over Vanity Metrics",

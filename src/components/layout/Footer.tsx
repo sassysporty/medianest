@@ -55,7 +55,12 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/tools/pagesurge" className="hover:text-white transition-colors">
-                  PageSurge — Facebook Automation
+                  PageSurge — Facebook
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/pinsurge" className="hover:text-white transition-colors">
+                  PinSurge — Pinterest
                 </Link>
               </li>
               <li>

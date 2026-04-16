@@ -43,5 +43,6 @@ export const serviceSubLinks = [
 
 export const aiToolsSubLinks = [
   { href: "/tools/pagesurge", label: "PageSurge — Facebook Automation" },
+  { href: "/tools/pinsurge", label: "PinSurge — Pinterest Automation" },
   { href: "/services/ai-tools-creation", label: "Custom AI Tool Development" },
 ];
